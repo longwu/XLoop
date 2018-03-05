@@ -8,6 +8,7 @@ namespace XLoop.Winform
     {
         private bool isError = false;
 
+        //创建一个循环工作引擎
         private readonly ILoopEngine engine = new LoopEngine();
         private SynchronizationContext syncContext = null;
 
@@ -19,8 +20,8 @@ namespace XLoop.Winform
             this.btnStop.Click += (s, e) => Stop();
             this.btnError.Click += (s, e) => Error();
 
-            engine.OnWorking += engine_OnWorking;
-            engine.Intervel = 500;
+            engine.OnWorking += engine_OnWorking;//注册需要循环执行的方法
+            engine.Intervel = 500;//时间间隔为500ms
 
             syncContext = SynchronizationContext.Current;
         }

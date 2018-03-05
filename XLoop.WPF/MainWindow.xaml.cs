@@ -11,6 +11,7 @@ namespace XLoop.WPF
     {
         private bool isError = false;
 
+        //创建一个循环工作引擎
         private readonly ILoopEngine engine = new LoopEngine();
         private SynchronizationContext syncContext = null;
 
@@ -24,8 +25,8 @@ namespace XLoop.WPF
 
             syncContext = SynchronizationContext.Current;
 
-            engine.OnWorking += engine_OnWorking;
-            engine.Intervel = 500;
+            engine.OnWorking += engine_OnWorking;//注册需要循环执行的方法
+            engine.Intervel = 500;//时间间隔为500ms
         }
 
         /// <summary>
