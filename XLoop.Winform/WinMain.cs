@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Threading;
-using System.Windows;
+using System.Windows.Forms;
 
-namespace XLoop.WPF
+namespace XLoop.Winform
 {
-    /// <summary>
-    /// MainWindow.xaml 的交互逻辑
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class WinMain : Form
     {
         private bool isError = false;
 
         private readonly ILoopEngine engine = new LoopEngine();
         private SynchronizationContext syncContext = null;
 
-        public MainWindow()
+        public WinMain()
         {
             InitializeComponent();
 
@@ -22,10 +19,10 @@ namespace XLoop.WPF
             this.btnStop.Click += (s, e) => Stop();
             this.btnError.Click += (s, e) => Error();
 
-            syncContext = SynchronizationContext.Current;
-
             engine.OnWorking += engine_OnWorking;
             engine.Intervel = 500;
+
+            syncContext = SynchronizationContext.Current;
         }
 
         /// <summary>
@@ -71,7 +68,7 @@ namespace XLoop.WPF
                 }
                 finally
                 {
-                    isError = false;
+                    isError = false;    
                 }
             }, null);
         }
